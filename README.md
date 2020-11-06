@@ -1,5 +1,9 @@
 # Restaurant List
 
+## 專案呈現畫面
+
+![Image](https://i.imgur.com/eCaEfbt.png)
+
 ## 功能描述 (features)
 
 - 列出餐廳清單
