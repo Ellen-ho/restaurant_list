@@ -2,13 +2,16 @@
 
 ## 專案呈現畫面
 
-![Image](https://i.imgur.com/eCaEfbt.png)
+![Image](https://i.imgur.com/ikGH7lR.png)
 
 ## 功能描述 (features)
 
 - 列出餐廳清單
-- 可針對餐廳名稱進行搜尋
-- 點選餐廳會列出餐廳詳細資料，包括名稱、電話、地址、圖片、類別與 Google 地圖
+- 可針對餐廳名稱和類別進行搜尋
+- 點選 Detail 按鈕，會列出餐廳詳細資料，包括名稱、電話、地址、圖片、類別與 Google 地圖
+- 新增餐廳資料
+- 編輯餐廳資料
+- 刪除餐應資料
 
 ## 安裝與執行步驟 (installation and execution)
 
@@ -30,6 +33,12 @@
   npm install
   ```
 
+- 新增種子資料
+
+  ```
+  npm run seed
+  ```
+
 - 安裝完成後，執行 nodemon 啟動專案
 
   ```
@@ -49,6 +58,8 @@
 - Node.js: v10.15.0
 - express: v4.17.1
 - express-handlebars: v5.2.0
+- mongoose: 5.10.9
+- mongoDB: 4.2.10
 - bootstrap: v4.2.1
 - font-awesome: v5.8.1
 - jQuery: v3.3.1
