@@ -43,14 +43,20 @@ app.get('/', (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  return Restaurant.find({
-    "$or": [
-      { "name": { $regex: `${keyword}`, $options: '$i' } },
-      { "category": { $regex: `${keyword}`, $options: '$i' } }
-    ]
-  })
+
+  if (keyword.trim() === '' ) {
+    res.redirect('/')
+  } else {
+    return Restaurant.find({
+      "$or": [
+        { "name": { $regex: `${keyword}`, $options: '$i' } },
+        { "category": { $regex: `${keyword}`, $options: '$i' } }
+      ]
+    })
     .lean()
     .then(restaurants => res.render('index', { restaurants, keyword }))
+  }
+  
 })
 
 app.get('/new', (req, res) => {
