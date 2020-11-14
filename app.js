@@ -35,7 +35,6 @@ app.use(express.static('public'))
 
 // routes setting
 app.get('/', (req, res) => {
-  console.log('IN HOME!!')
    Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
