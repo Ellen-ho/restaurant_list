@@ -5,7 +5,7 @@
 </div>
 <div class="container mt-5">
   <div class="row">
-    <form action="/{{ restaurant._id }}/edit" method="POST">
+    <form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST">
       <div class="form-group">
         <label for="name">餐廳中文名</label>
         <input type="text" class="form-control" name="name" value="{{ restaurant.name }}" required>
