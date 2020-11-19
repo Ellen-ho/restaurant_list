@@ -6,29 +6,42 @@ const Restaurant = require('../../models/restaurant')
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
 
-  if (keyword.trim() === '' ) {
+  if (keyword.trim() === '') {
     res.redirect('/')
   } else {
     return Restaurant.find({
-      "$or": [
-        { "name": { $regex: `${keyword}`, $options: '$i' } },
-        { "category": { $regex: `${keyword}`, $options: '$i' } }
+      $or: [
+        { name: { $regex: `${keyword}`, $options: '$i' } },
+        { category: { $regex: `${keyword}`, $options: '$i' } }
       ]
     })
-    .lean()
-    .then(restaurants => res.render('index', { restaurants, keyword }))
+      .lean()
+      .sort({ name: 'asc' }) // desc
+      .then(restaurants => res.render('index', { restaurants, keyword }))
   }
-  
+})
+
+router.get('/sort', (req, res) => {
+  const sortCondition = req.query.sortCondition
+  const sortConditionSplit = sortCondition.split('_')
+  const sortTarget = sortConditionSplit[0]
+  const sortType = sortConditionSplit[1]
+
+  return Restaurant
+    .find({ sortTarget })
+    .lean()
+    .sort({ sortTarget: sortType })
+    .then(restaurants => res.render('index', { restaurants, sortCondition }))
 })
 
 router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-router.post('/new/create', (req, res) => {
-  const newRestaurant = req.body    
-  return Restaurant.create(newRestaurant)    
-    .then(() => res.redirect('/')) 
+router.post('/new', (req, res) => {
+  const newRestaurant = req.body
+  return Restaurant.create(newRestaurant)
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
@@ -49,18 +62,18 @@ router.get('/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 // 更新餐廳詳細資料
-router.post('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant = Object.assign(restaurant, req.body)
-      return restaurant.save() 
+      return restaurant.save()
     })
-    .then(() => res.redirect(`/${id}`))
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 
-router.post('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(Restaurant => Restaurant.remove())

@@ -9,7 +9,15 @@ require('./config/mongoose')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars' }))
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  extname: '.handlebars',
+  helpers: {
+    ifEquals: function (value1, value2) {
+      return value1 === value2
+    }
+  }
+}))
 app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
@@ -21,6 +29,3 @@ app.use(routes)
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)
 })
-
-
-
