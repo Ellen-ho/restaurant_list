@@ -10,15 +10,86 @@ header {
   color: #226089;
 }
 
+#cf {
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+}
+
+#cf img {
+  animation-name: cf3FadeInOut;
+  animation-timing-function: ease-in-out;
+  /* if you only want to cycle a finite amount of times, 
+   simply change 'infinite' with # of iterations you need */
+  animation-iteration-count: infinite;
+  animation-duration: 15s;
+  animation-direction: alternate;
+  /* not strictly necessary */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#cf img:nth-of-type(1) {
+  animation-delay: 13s;
+}
+
+#cf img:nth-of-type(2) {
+  animation-delay: 7s;
+}
+
+#cf img:nth-of-type(3) {
+  /* add some delay for the first picture as well */
+  animation-delay: 1s;
+}
+
+@keyframes cf3FadeInOut {
+  /* distributing times evenly */
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 
 .banner {
   position: relative;
-  z-index: -1;
-  margin: -5px;
-  height: 360px;
-  background: #dddddd center center url("https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg");
-  background-size: cover;
-  filter: blur(3px);
+  min-height: 300px;
+  width: 100%;
 }
+
+.banner .banner-wrap {
+  -webkit-animation: banner-slider 120s infinite linear;
+  -moz-animation: banner-slider 120s infinite linear;
+  -o-animation: banner-slider 120s infinite linear;
+  animation: banner-slider 120s infinite linear;
+}
+
+.banner span, .banner span:after {
+  display: block;
+  min-height: 300px;
+  width: 100%;
+  background: url('https://cdn.pixabay.com/photo/2015/09/14/11/43/restaurant-939435_960_720.jpg') center left repeat-x;
+}
+
+.banner span:after {
+  background-position: top right;
+  content: '';
+  -webkit-transform: translate(-100%, 0);
+  -moz-transform: translate(-100%, 0);
+  -ms-transform: translate(-100%, 0);
+  -o-transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
+} */
 
 .search-bar .search-bar-outer {
   margin: 0 auto;
@@ -99,5 +170,56 @@ header {
 @media screen and (max-width: 575px) {
   .card img {
     height: auto;
+  }
+}
+
+@-webkit-keyframes banner-slider {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(783px, 0, 0);
+    -moz-transform: translate3d(783px, 0, 0);
+    -ms-transform: translate3d(783px, 0, 0);
+    -o-transform: translate3d(783px, 0, 0);
+    transform: translate3d(783px, 0, 0);
+  }
+}
+
+@-moz-keyframes banner-slider {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(783px, 0, 0);
+    -moz-transform: translate3d(783px, 0, 0);
+    -ms-transform: translate3d(783px, 0, 0);
+    -o-transform: translate3d(783px, 0, 0);
+    transform: translate3d(783px, 0, 0);
+  }
+}
+
+@-ms-keyframes banner-slider {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(783px, 0, 0);
+    -moz-transform: translate3d(783px, 0, 0);
+    -ms-transform: translate3d(783px, 0, 0);
+    -o-transform: translate3d(783px, 0, 0);
+    transform: translate3d(783px, 0, 0);
   }
 }

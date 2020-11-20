@@ -2,54 +2,52 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible"
-        content="ie=edge">
-  <title>我的餐廳清單</title>
-  <link rel="shortcut icon"
-        href="/favicon.ico">
-  <!-- link css files here -->
-  <link rel="stylesheet"
-        href="https://bootswatch.com/4/minty/bootstrap.min.css">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
-  <link rel="stylesheet"
-        href="/stylesheets/index.css">
-  <link rel="stylesheet"
-        href="/stylesheets/show.css">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>我的餐廳清單</title>
+      <link rel="shortcut icon" href="/favicon.ico">
+      <!-- link css files here -->
+      <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+      <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 
 <body>
-  <header>
-    <!-- navigation -->
-    <nav class="navbar navbar-light bg-light">
-      <div class="container d-flex justify-content-between">
-        <a class="navbar-brand"
-           href="/">
-          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-               width="30"
-               height="30"
-               class="d-inline-block align-top"
-               alt="我的餐廳清單">
-          我的餐廳清單
-        </a>
-        <!-- restaurant add-->
-        <a href="/restaurants/new"
-           class="btn btn-info">新增餐廳</a>
-      </div>
-    </nav>
+      <header>
+            <!-- navigation -->
+            <nav class="navbar navbar-light bg-light">
+                  <div class="container d-flex justify-content-between">
+                        <a class="navbar-brand" href="/">
+                              <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+                                    width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+                              我的餐廳清單
+                        </a>
+                        <!-- restaurant add-->
+                        <a href="/restaurants/new" class="btn btn-info">新增餐廳</a>
+                  </div>
+            </nav>
 
-    <div class="banner"></div>
-  </header>
+            {{!-- <div class="banner">
+                  <div class="banner-wrap">
+                        <span></span>
+                  </div>
+            </div> --}}
+            <div id="cf">
+                  <img class="bottom"
+                        src="https://images.squarespace-cdn.com/content/v1/5be122d8f8370ab91d93d1c3/1555571865458-TE8BSBQXMJSR94XT9TTF/ke17ZwdGBToddI8pDm48kMijDFPPxZI9SqDTeXBlhZZ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbWoQEU83db16eOiiokGtBVEuLilHCNEAgRmJzk_sAPEmraFsHyr9B09bGJXbau2RA/dinner1378.jpg?format=2500w" />
+                  <img class="top"
+                        src="https://media3.s-nbcnews.com/j/newscms/2019_05/2736521/190131-stock-taco-bar-food-ew-1220p_bc7c9fc25ecd393bfa3d7d35f216edfc.fit-760w.jpg" />
+                  <img class="bottom" src="https://static.bangkokpost.com/media/content/dcx/2019/12/30/3469329.jpg">
+            </div>
+      </header>
 
-  <!-- parital templates will replace the part of "body" here -->
-  {{{ body }}}
+      <!-- parital templates will replace the part of "body" here -->
+      {{{ body }}}
 
-  <!-- include javascript files here -->
-  <script src="/javascripts/jquery-3.3.1.js"></script>
-  <script src="/javascripts/bootstrap.js"></script>
+      <!-- include javascript files here -->
+      <script src="/javascripts/jquery-3.3.1.js"></script>
+      <script src="/javascripts/bootstrap.js"></script>
 </body>
 
 </html>
