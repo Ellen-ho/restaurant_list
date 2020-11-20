@@ -2,7 +2,7 @@
 
 ## 專案呈現畫面
 
-![Image](https://i.imgur.com/ikGH7lR.png)
+![Image](https://i.imgur.com/OhV8kXg.png)
 
 ## 功能描述 (features)
 
@@ -12,6 +12,7 @@
 - 新增餐廳資料
 - 編輯餐廳資料
 - 刪除餐應資料
+- 可依店名正反序、類別正反序、評分正反序，讓餐廳資料作排序後呈現
 
 ## 安裝與執行步驟 (installation and execution)
 
@@ -58,6 +59,7 @@
 - Node.js: v10.15.0
 - express: v4.17.1
 - express-handlebars: v5.2.0
+- method-override: v3.0.0
 - mongoose: 5.10.9
 - mongoDB: 4.2.10
 - bootstrap: v4.2.1
