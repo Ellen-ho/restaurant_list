@@ -1,36 +1,24 @@
 const express = require('express')
 const router = express.Router()
+const url = require('url')
 
 const Restaurant = require('../../models/restaurant')
 
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const sortCondition = req.query.sortCondition
+  const sortCondition = req.query.sortCondition || 'name_asc'
   const sortConditionSplit = sortCondition.split('_')
   const sortTarget = sortConditionSplit[0] // asc or desc
   const sortSequence = sortConditionSplit[1]
 
   if (keyword.trim() === '') {
-    res.redirect('/')
+    res.redirect(`/?sortCondition=${sortCondition}`)
   } else {
     return Restaurant.find({ name: { $regex: `${keyword}`, $options: '$i' } })
       .lean()
       .sort({ [sortTarget]: sortSequence }) 
       .then(restaurants => res.render('index', { restaurants, keyword, sortCondition }))
   }
-})
-
-router.get('/sort', (req, res) => {
-  const sortCondition = req.query.sortCondition
-  const sortConditionSplit = sortCondition.split('_')
-  const sortTarget = sortConditionSplit[0]
-  const sortSequence = sortConditionSplit[1]
-
-  return Restaurant
-    .find({ sortTarget })
-    .lean()
-    .sort({ sortTarget: sortType })
-    .then(restaurants => res.render('index', { restaurants, sortCondition }))
 })
 
 router.get('/new', (req, res) => {
