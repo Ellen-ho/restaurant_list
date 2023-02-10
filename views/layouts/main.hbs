@@ -1,5 +1,4 @@
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,20 +28,27 @@
               width="30"
               height="30"
               class="d-inline-block align-top"
-              alt="我的餐廳清單"
+              alt="restaurant-list"
             />
-            我的餐廳清單
+            {{#if isAuthenticated}} {{user.name}}'s {{/if}} Restaurant List
           </a>
+          {{#if isAuthenticated}}
           <!-- restaurant add-->
-          <a href="/restaurants/new" class="btn btn-info">新增餐廳</a>
+          <a href="/restaurants/new" class="btn btn-info">Add Restaurant</a>
+          <a href="/users/logout" class="btn btn-info">Logout</a>
+          {{else}}
+          <a href="/users/login" class="btn btn-outline-light">Login</a>
+          {{/if}}<!--hbs語法--->
         </div>
       </nav>
 
-      {{! <div class="banner">
-                  <div class="banner-wrap">
-                        <span></span>
-                  </div>
-            </div> }}
+      {{!
+      <div class="banner">
+        <div class="banner-wrap">
+          <span></span>
+        </div>
+      </div>
+      }}
       <div id="cf">
         <img
           class="bottom"
@@ -66,5 +72,4 @@
     <script src="/javascripts/jquery-3.3.1.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
   </body>
-
 </html>
