@@ -8,8 +8,9 @@ router.get('/', (req, res) => {
   const sortConditionSplit = sortCondition.split('_')
   const sortTarget = sortConditionSplit[0] // asc or desc
   const sortSequence = sortConditionSplit[1]
+  const userId = req.user._id
 
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort({ [sortTarget]: sortSequence }) // desc
     .then(restaurants => res.render('index', { restaurants, sortCondition }))

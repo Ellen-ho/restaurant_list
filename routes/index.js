@@ -5,8 +5,10 @@ const home = require('./modules/home')
 const restaurants = require('./modules/restaurants')
 const users = require('./modules/users')
 
-router.use('/', home)
+const { authenticator } = require('../middleware/auth')
+
 router.use('/users', users)
-router.use('/restaurants', restaurants)
+router.use('/', authenticator, home)
+router.use('/restaurants', authenticator, restaurants)
 
 module.exports = router
