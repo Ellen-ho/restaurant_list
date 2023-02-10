@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const url = require('url')
 
 const Restaurant = require('../../models/restaurant')
 
@@ -16,7 +15,7 @@ router.get('/search', (req, res) => {
   } else {
     return Restaurant.find({ name: { $regex: `${keyword}`, $options: '$i' } })
       .lean()
-      .sort({ [sortTarget]: sortSequence }) 
+      .sort({ [sortTarget]: sortSequence })
       .then(restaurants => res.render('index', { restaurants, keyword, sortCondition }))
   }
 })
