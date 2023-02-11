@@ -18,11 +18,11 @@ module.exports = app => {
         // 2. user: 驗證成功後返回的訊息，失敗就回傳 false
         // 3. info: 回傳驗證錯誤提示
         if (!user) {
-          return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
+          return done(null, false, req.flash('warning_msg', '此信箱尚未註冊!'))
         }
         return bcrypt.compare(password, user.password).then(isMatch => {
           if (!isMatch) {
-            return done(null, false, req.flash('warning_msg', 'Email or Password incorrect.'))
+            return done(null, false, req.flash('warning_msg', '信箱或密碼錯誤!'))
           }
           return done(null, user)
         })

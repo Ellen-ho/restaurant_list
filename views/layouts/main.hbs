@@ -34,14 +34,12 @@
               {{#if user.name}} 
                 {{user.name}}'s 
               {{/if}}
-            {{/if}} Restaurant List
+            {{/if}} 餐廳清單
           </a>
           {{#if isAuthenticated}}
-            <!-- restaurant add-->
-            <a href="/restaurants/new" class="btn btn-info">Add Restaurant</a>
-            <a href="/users/logout" class="btn btn-info">Logout</a>
+            <a href="/users/logout" class="btn btn-info">登出</a>
           {{else}}
-            <a href="/users/login" class="btn btn-outline-light">Login</a>
+            <a href="/users/login" class="btn btn-outline-light">會員登入</a>
           {{/if}}<!--hbs語法--->
         </div>
       </nav>
