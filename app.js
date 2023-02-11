@@ -31,19 +31,18 @@ app.engine(
 )
 app.set('view engine', 'hbs')
 
+// setting static files
+app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true // 未登入過的使用者，未初始化的session建立後強制塞進去
 }))
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(methodOverride('_method'))
-
 UsePassport(app)
-
 app.use(flash())
-
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user// 反序列化時放入
@@ -51,10 +50,6 @@ app.use((req, res, next) => {
   res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
-
-// setting static files
-app.use(express.static('public'))
-
 app.use(routes)
 
 app.listen(PORT, () => {

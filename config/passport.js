@@ -10,15 +10,19 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then(user => {
+        // done 函數是完成驗證後返回的結果，三個參數是指
+        // 1. error: 驗證過程中的錯誤，沒有就回傳 null
+        // 2. user: 驗證成功後返回的訊息，失敗就回傳 false
+        // 3. info: 回傳驗證錯誤提示
         if (!user) {
-          return done(null, false, { message: 'That email is not registered!' })
+          return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
         }
         return bcrypt.compare(password, user.password).then(isMatch => {
           if (!isMatch) {
-            return done(null, false, { message: 'Email or Password incorrect.' })
+            return done(null, false, req.flash('warning_msg', 'Email or Password incorrect.'))
           }
           return done(null, user)
         })
@@ -50,9 +54,11 @@ module.exports = app => {
       })
   }))
 
+  // 將 user ID 存到 session
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
+  // 將 user ID 從 session 中取出並從 DB 中取出 user 資訊
   passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
