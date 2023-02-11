@@ -21,12 +21,11 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
   // 取得註冊表單參數
   const { name, email, password, confirmPassword } = req.body
-  // 檢查使用者是否已經註冊
-
   const errors = []
 
-  if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: '所有欄位都是必填!' })
+  // email 與密碼是必填欄位，但名字不是
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: '必填欄位尚未完成填寫!' })
   }
   if (password !== confirmPassword) {
     errors.push({ message: '密碼與確認密碼不相符!' })
@@ -41,6 +40,7 @@ router.post('/register', (req, res) => {
     })
   }
 
+  // 檢查使用者是否已經註冊
   User.findOne({ email }).then(user => {
     // 如果已經註冊：退回原本畫面
     if (user) {
